@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "senior-developer": {
+      "source": "dangeles/claude",
+      "sourceType": "github",
+      "skillPath": "claude-config/skills/senior-developer/SKILL.md",
+      "computedHash": "4c71431bc64af7985d1d88f66c2e39ce4c860d73f6640c0db650f7790795f37f"
+    }
+  }
+}

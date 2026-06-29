@@ -1,0 +1,11 @@
+broker: dhan
+market_open: "09:15"
+scan_interval_seconds: 60
+snapshot_interval_seconds: 1
+snapshot_path: data/snapshot.json
+
+strike_step_overrides:
+  NIFTY: 50
+  BANKNIFTY: 100
+  FINNIFTY: 50
+  MIDCPNIFTY: 25

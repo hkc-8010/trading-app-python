@@ -1,0 +1,18 @@
+{
+  "strikes": [
+    {
+      "symbol": "NIFTY",
+      "expiry": "2025-07-31",
+      "strike": 22000,
+      "option_type": "CE",
+      "action": "BUY"
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "expiry": "2025-07-31",
+      "strike": 47000,
+      "option_type": "PE",
+      "action": "SELL"
+    }
+  ]
+}
