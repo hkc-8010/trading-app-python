@@ -30,6 +30,11 @@ data/
 # macOS
 .DS_Store
 
+# Skills / internal tooling
+.agents/
+skills-lock.json
+blueprint.md
+
 # pytest / coverage
 .pytest_cache/
 .coverage
