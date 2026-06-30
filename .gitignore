@@ -39,3 +39,4 @@ blueprint.md
 .pytest_cache/
 .coverage
 htmlcov/
+.gstack/
