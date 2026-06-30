@@ -83,7 +83,14 @@ async def run(cfg: AppConfig | None = None) -> None:
         _NEAREST_EXPIRY[sym] = sorted(set(exps))[0]
 
     # ── 3. Build shared tick callback ─────────────────────────────────────────
-    spot_tokens: dict[int, str] = {v: k for k, v in registry.get_all_spot_tokens().items()}
+    # Only subscribe to spot tokens for symbols that have F&O option chains.
+    # The full registry includes all ~9k NSE equities; we only need the ~216 F&O underlyings.
+    fo_symbols = set(registry.list_symbols())
+    spot_tokens: dict[int, str] = {
+        v: k
+        for k, v in registry.get_all_spot_tokens().items()
+        if k in fo_symbols
+    }
 
     async def on_tick(tick: Tick) -> None:
         candle_builder.on_tick(tick)
@@ -100,7 +107,7 @@ async def run(cfg: AppConfig | None = None) -> None:
 
     # ── 5. Subscribe to spot/futures tickers ─────────────────────────────────
     spot_token_list = list(spot_tokens.keys())
-    await broker.subscribe_ticks(spot_token_list, on_tick)
+    await broker.subscribe_ticks(spot_token_list, on_tick, is_spot=True)
     logger.info("Subscribed to %d spot/futures tokens", len(spot_token_list))
 
     # ── 6. Load user-defined strikes ─────────────────────────────────────────

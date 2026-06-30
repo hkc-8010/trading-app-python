@@ -129,7 +129,9 @@ class ZerodhaAdapter(BrokerAdapter):
             )
         return None
 
-    async def subscribe_ticks(self, tokens: list[int], callback: OnTickCallback) -> None:
+    async def subscribe_ticks(
+        self, tokens: list[int], callback: OnTickCallback, *, is_spot: bool = False
+    ) -> None:
         self._callback = callback
         new_tokens = [t for t in tokens if t not in self._subscribed_tokens]
         if not new_tokens:

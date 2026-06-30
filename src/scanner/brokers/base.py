@@ -39,7 +39,9 @@ class BrokerAdapter(ABC):
         ...
 
     @abstractmethod
-    async def subscribe_ticks(self, tokens: list[int], callback: OnTickCallback) -> None:
+    async def subscribe_ticks(
+        self, tokens: list[int], callback: OnTickCallback, *, is_spot: bool = False
+    ) -> None:
         """Subscribe to live tick feed for the given instrument tokens.
 
         The same callback is used for all tokens; the Tick.token field
@@ -48,6 +50,8 @@ class BrokerAdapter(ABC):
         Args:
             tokens: List of broker instrument tokens to subscribe.
             callback: Async function called for every incoming tick.
+            is_spot: Hint that tokens are spot/futures (LTP-only feed sufficient).
+                     Options/derivatives should use a richer feed mode for volume.
         """
         ...
 
